@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import Image from "next/image";
 import {
     Dialog,
@@ -13,10 +13,12 @@ interface MeetingModalProps {
     onClose: () => void;
     title: string;
     className?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
     handleClick?: () => void;
-    buttonText: string;
+    buttonText?: string;
+    instantMeeting?: boolean;
     image?: string;
+    buttonClassName?: string;
     buttonIcon?: string;
 }
 
@@ -27,8 +29,8 @@ export const MeetingModal = ({ isOpen, onClose, title, className, children, hand
                 <DialogTitle className="hidden" />
                 <div className="flex flex-col gap-6">
                     {image && (
-                        <div>
-                            <Image src={image} alt="image" width={72} height={72} />
+                        <div className="flex justify-center">
+                            <Image src={image} alt="checked" width={72} height={72} />
                         </div>
                     )}
                     <h1 className={cn('text-3xl font-bold leading-[42px]', className)}>{title}</h1>
