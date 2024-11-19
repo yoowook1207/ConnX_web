@@ -35,7 +35,7 @@ export const useGetCalls = () => {
             }
         }
 
-        loadCalls();
+        void loadCalls();
     }, [client, user?.id]);
 
     const now = new Date();
@@ -54,5 +54,4 @@ export const useGetCalls = () => {
         callRecordings: calls,
         isLoading
     }
-
 }
