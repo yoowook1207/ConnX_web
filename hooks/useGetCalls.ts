@@ -22,9 +22,9 @@ export const useGetCalls = () => {
                         starts_at: { $exists: true },
                         $or: [
                             { created_by_user_id: user.id },
-                            { members: { $in: [user.id] } }
-                        ]
-                    }
+                            { members: { $in: [user.id] } },
+                        ],
+                    },
                 });
 
                 setCalls(calls);
@@ -51,7 +51,7 @@ export const useGetCalls = () => {
     return {
         endedCalls,
         upcomingCalls,
-        recordings: calls,
+        callRecordings: calls,
         isLoading
     }
 
