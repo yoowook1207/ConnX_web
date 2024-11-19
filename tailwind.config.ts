@@ -52,10 +52,20 @@ const config = {
                     from: { height: 'var(--radix-accordion-content-height)' },
                     to: { height: '0' },
                 },
+                'expand': {
+                    '0%': { width: '0%', hidden: 'true' },
+                    '100%': { width: '100%' },
+                },
+                collapse: {
+                    '0%': { width: '100%' },
+                    '100%': { width: '0%', hidden: 'true' },
+                },
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
+                'expand': 'expand 0.7s ease-in-out',
+                'collapse': 'collapse 0.7s ease-in-out',
             },
             backgroundImage: {
                 hero: "url('/images/hero-background.png')",
