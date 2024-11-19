@@ -54,7 +54,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
         };
 
         if (type === 'recordings') {
-            fetchRecordings();
+            void fetchRecordings();
         }
     }, [type, callRecordings]);
 
@@ -64,11 +64,11 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
     const noCallsMessage = getNoCallsMessage();
 
     return (
-        <div className="grid grid-cols-1 gap-5 xl:grid-cols-2" key={type}>
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-2">
             {calls && calls.length > 0 ? (
-                calls.map((meeting: Call | CallRecording) => (
+                calls.map((meeting: Call | CallRecording, index) => (
                     <MeetingCard
-                        key={(meeting as Call).id}
+                        key={(meeting as Call).id || index}
                         icon={
                             type === 'ended'
                                 ? '/icons/previous.svg'
@@ -95,7 +95,7 @@ const CallList = ({ type }: { type: 'ended' | 'upcoming' | 'recordings' }) => {
                         buttonText={type === 'recordings' ? 'Play' : 'Start'}
                         handleClick={
                             type === 'recordings'
-                                ? () => router.push(`${(meeting as CallRecording).url}`)
+                                ? () => window.open(`${(meeting as CallRecording).url}`, '_blank')
                                 : () => router.push(`/meeting/${(meeting as Call).id}`)
                         }
                     />
